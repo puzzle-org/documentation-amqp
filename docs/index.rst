@@ -11,8 +11,8 @@ PHP Library to manage AMQP messages (publishing and consuming)
 .. toctree::
    :maxdepth: 2
 
-    overview
-    gettingStarted
-    send/index
-    clients/index
-    workers/index
+   overview
+   gettingStarted
+   send/index
+   clients/index
+   workers/index
