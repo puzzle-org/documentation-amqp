@@ -13,6 +13,8 @@ PHP Library to manage AMQP messages (publishing and consuming)
 
    overview
    gettingStarted
-   send/index
-   clients/index
+   send
+   clients
    workers/index
+   silex/index
+   testing
