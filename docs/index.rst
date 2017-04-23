@@ -15,6 +15,6 @@ PHP Library to manage AMQP messages (publishing and consuming)
    gettingStarted
    send
    clients
-   workers/index
+   workers
    silex/index
    testing
