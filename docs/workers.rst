@@ -9,9 +9,9 @@ Create a new worker
 -------------------
 To create a worker, you have to follow these few steps: 
 
-	1. Create the worker class (that processes messages)
-	2. Configure the worker (queue, strategy, ...)
-	3. Launch it
+    1. Create the worker class (that processes messages)
+    2. Configure the worker (queue, strategy, ...)
+    3. Launch it
 
 Create the worker class
 ```````````````````````
@@ -27,15 +27,53 @@ Create the worker class
     {
         public function process(ReadableMessage $message)
         {
-        	// do stuff
+            // do stuff
         }
     }
+    
+The method ``process`` is a blocking one, waiting for next message in the listened queue.
     
 Configure the worker
 ````````````````````
 
+You have to instanciate a ``WorkerContext`` object :
+
+.. code-block:: php
+
+    <?php
+
+    use Puzzle\AMQP\Consumers;
+
+    $consumer = new Consumers\Simple();
+    
+	$workerClosure = function() {
+        return new Example();
+    };
+    
+    $workerContext = new WorkerContext(
+    	$workerClosure,
+        $consumer,
+        'queueName'
+    );
+    
+
 Launch a worker
 ```````````````
+
+Ask the consumer to start consuming the messages from the queue (as defined in the ``WorkerContext``) :
+
+.. code-block:: php
+
+    <?php
+
+    use Puzzle\AMQP\Workers\ProcessorInterfaceAdapter;
+
+    // infinite loop
+    $consumer->consume(
+        new ProcessorInterfaceAdapter($workerContext),
+        $client,
+        $workerContext
+    );
 
 Consumption strategies
 ----------------------
