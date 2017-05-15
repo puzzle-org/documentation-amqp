@@ -75,5 +75,7 @@ Ask the consumer to start consuming the messages from the queue (as defined in t
         $workerContext
     );
 
+Al these steps are handled in an easier way in :ref:`silex` integration.
+
 Consumption strategies
 ----------------------
